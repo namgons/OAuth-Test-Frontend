@@ -17,7 +17,7 @@ app.get("/oauth/kakao/redirect", async (req, res) => {
   res.sendFile(__dirname + "/html/kakaoRedirect.html");
   const code = req.query.code;
   try {
-    const response = await axios.get(`http://localhost:8080/oauth/login/kakao?code=${code}`);
+    const response = await axios.get(`http://localhost:8080/oauth/kakao/login?code=${code}`);
     const data = response.data;
     alert("로그인 성공: " + data);
   } catch (error) {}
