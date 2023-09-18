@@ -2,6 +2,7 @@ const express = require("express");
 const http = require("http");
 const bodyParser = require("body-parser");
 const app = express();
+const axios = require("axios");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/public", express.static(__dirname + "/public"));
@@ -20,7 +21,9 @@ app.get("/oauth/kakao/redirect", async (req, res) => {
     const response = await axios.get(`http://localhost:8080/oauth/kakao/login?code=${code}`);
     const data = response.data;
     alert("로그인 성공: " + data);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 server.listen(PORT, () => {
